@@ -1,3 +1,4 @@
+/*select maximum quantity from the given array according to the threshold*/
 import java.util.Scanner;
 public class AoObj {
     public static void main(String[] args) {
