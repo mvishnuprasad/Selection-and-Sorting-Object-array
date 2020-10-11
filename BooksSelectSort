@@ -1,0 +1,88 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import java.util.Scanner;
+/* Sorting books based on the ID number and selected if their title has the passed string parameter in it*/ 
+public class Opa1 {
+    public static void main(String args[]) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        Book[] ar = new Book[4];
+        for (int i = 0; i < ar.length; i++) {
+            int id = scn.nextInt();
+            scn.nextLine();
+            String title = scn.nextLine();
+            String author = scn.nextLine();
+            ;
+            double price = scn.nextDouble();
+            scn.nextLine();
+            ar[i] = new Book(id, title, author, price);
+        }
+        String t = scn.nextLine();
+        Book[] res = searchTitle(t, ar);
+
+        for (int i = 0; i < res.length; i++) {
+            System.out.println(res[i].getId());
+        }
+    }
+
+    public static Book[] searchTitle(String a, Book[] arr) {
+        String l=a.toLowerCase();
+        int c = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].getTitle().toLowerCase().indexOf(l)!=-1) {
+                c++;
+            }
+        }
+       
+        Book[] arr1 = new Book[c];
+        c = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].getTitle().toLowerCase().indexOf(l)!=-1)
+                arr1[c++] = arr[i];
+        }
+       
+for(int i=0;i<arr1.length;i++){
+        for(int j=i+1;j<arr1.length;j++){
+            if(arr1[i].getId()>=arr1[j].getId()){
+                Book temp=arr1[i];
+                arr1[i]=arr1[j];
+                arr1[i]=temp;
+            }
+        }
+    }
+
+
+        return arr1;
+
+}
+}
+
+class Book
+{
+    int id;
+    String title;
+    String author;
+    double price;
+    public Book(int a,String b, String c, double d){
+        this.id=a;
+        this.title=b;
+        this.author=c;
+        this.price=d;
+    }
+    public int getId(){
+        return id;
+    }
+    public String getTitle(){
+        return title;
+    }
+    public String getauthor(){
+        return author;
+    }
+    public double getprice(){
+        return price;
+    }
+
+}
